@@ -6,19 +6,28 @@ import { locators } from '../Utils/Locaters.js';
 
 test('User should be able to register successfully', async ({ page }) => {
   // Open URL
-  const commonPage = new Common_Page(page);
+  const commonPage = new Common_Page(page, testData.Login_Detail);
+  //Open URL
   await commonPage.OpenApplication();
   await page.waitForLoadState('networkidle');
 
-  await page.click(locators.Registration.Registration_Link);
+  //Title Validation
+  await expect(page).toHaveTitle("ParaBank | Welcome | Online Banking");
 
   // Fill registration details
   const registrationPage = new Registration_Page(page, testData.Registration_Detail);
+  //Click on Register Link
+  await registrationPage.Register_Link();
+  //Enter the Registration detail
   await registrationPage.Registration_Detail();
-
   // Click on Register
-  await page.click(locators.Registration.registerBtn);
-
+  await registrationPage.registerBtn();
   // Validate registration success
-  await registrationPage.getSuccessMessage();
+  await expect(page.locator('text=Your account was created successfully')).toBeVisible();
+
+
+  //Logout
+  await commonPage.Logout();
+  //Login User
+  await commonPage.Validate_User();
 });

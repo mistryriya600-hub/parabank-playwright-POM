@@ -19,6 +19,10 @@ export class Registration_Page {
     this.confirmPasswordInput = locators.Registration.confirmPasswordInput;
   }
 
+  async Register_Link(){
+    await this.page.click(locators.Registration.Registration_Link);
+  }
+
   async Registration_Detail() {
     const data = this.data;
     await this.page.fill(this.firstNameInput, data.firstName);
@@ -34,10 +38,14 @@ export class Registration_Page {
     await this.page.fill(this.confirmPasswordInput, data.confirmPassword);
   }
 
-  async getSuccessMessage() {
-    // Validate registration success
-     const successMsg = this.page.locator('h1.title');
-     await expect(successMsg).toBeVisible();
-     console.log(await successMsg.textContent());
-} 
+  async registerBtn(){
+    await this.page.click(locators.Registration.registerBtn);
+  }
+
+  // async getSuccessMessage() {
+  //   // Validate registration success
+  //    const successMsg = this.page.locator('h1.title');
+  //    await expect(successMsg).toBeVisible();
+  //    console.log(await successMsg.textContent());
+  // } 
 }

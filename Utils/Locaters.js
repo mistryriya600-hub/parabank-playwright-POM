@@ -17,4 +17,9 @@ export const locators = {
 
     },
 
+    Login:{
+        Username_Input : "//*[@name='username']",
+        Password_Input : "//*[@type='password']",
+        logoutLink: 'a[href="logout.htm"]'
+    },
 }
