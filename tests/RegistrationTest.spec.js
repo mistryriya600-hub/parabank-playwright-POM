@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { Common_Page } from '../Pages/Common_Page.js';
+import { New_Account } from '../Pages/New_Account.js';
 import { Registration_Page } from '../Pages/Registration_Page.js';
 import { testData } from '../Utils/testData.js';
 import { locators } from '../Utils/Locaters.js';
+
 
 test('User should be able to register successfully', async ({ page }) => {
   // Open URL
@@ -30,4 +32,15 @@ test('User should be able to register successfully', async ({ page }) => {
   await commonPage.Logout();
   //Login User
   await commonPage.Validate_User();
+  await commonPage.Login();
+
+  //New Account
+  const NewAccount = new New_Account(page);
+  //Click on the Open Account Link
+  await NewAccount.Open_Account_Link();
+  //Selecting the Account Option
+  await NewAccount.New_Account_Detail();
+  //Click on the Open Account button
+  await NewAccount.Open_Account_Btn();
+  await expect(page.locator("//p[normalize-space()='Congratulations, your account is now open.']")).toHaveText("Congratulations, your account is now open.");
 });

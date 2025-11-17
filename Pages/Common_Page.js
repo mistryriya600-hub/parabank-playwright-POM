@@ -21,7 +21,11 @@ export class Common_Page{
       await this.page.fill(this.Password_Input, data.Password);
     }
 
+    async Login(){
+      await this.page.click(locators.Login.login_btn);
+    }
+
     async Logout(){
-      await this.page.click(locators.Login.logoutLink);
+      await this.page.click(locators.Registration.logout);
     }
 }

@@ -20,6 +20,13 @@ export const locators = {
     Login:{
         Username_Input : "//*[@name='username']",
         Password_Input : "//*[@type='password']",
-        logoutLink: 'a[href="logout.htm"]'
+        login_btn : "//input[@value='Log In']",
+    },
+
+    NewAccount:{
+        New_Open_Account_link : "//a[normalize-space()='Open New Account']",
+        Account_Type_Opt : "//*[@id='type']",
+        Account_Number_opt : "//*[@id='fromAccountId']",
+        Open_New_Account_btn : "//*[@value='Open New Account']",
     },
 }
